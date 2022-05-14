@@ -15,12 +15,23 @@ export async function login(req: Request, res: Response) {
         let { usuario, password } = req.body;
         const conn = await connect();        
 
-        let query = `SELECT * FROM usuarios WHERE usuario = '${usuario}' AND password = '${password}'`;
+        let query = `SELECT
+            usuario_id as id,
+            usuario,
+            email,
+            rol_id as rolId
+        FROM
+            usuarios
+        WHERE
+            usuario = '${usuario}'
+        AND
+            password = '${password}'`;
+
         let listaUsuarios = await conn.query(query);
         let usuarioEncontrado: any = listaUsuarios[0];
-
+        
         if (usuarioEncontrado.length) {
-            return res.status(200).json({ message: 'Sesion ha sido iniciada' });
+            return res.status(200).json(usuarioEncontrado[0]);
         } else {
             return res.status(404).send('El usuario o contraseña son incorrectos');
         }

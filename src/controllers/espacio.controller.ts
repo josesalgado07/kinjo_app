@@ -25,8 +25,6 @@ export async function reservar(req: Request, res: Response): Promise<Response> {
         ${datos.espacio},
         ${datos.usuarioId},
         1, NULL)`;
-
-        console.log(query);
         
     try {
         let response: any = await conn.query(query);

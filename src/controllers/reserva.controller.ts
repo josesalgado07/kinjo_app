@@ -42,7 +42,7 @@ export async function cancelar(req: Request, res: Response) {
 
     let query = `UPDATE
         reservas
-    SET estado_reserva_id = 3
+    SET estado_reserva_id = 5
     WHERE reserva_id = ${id}`;
 
     let response: any = await conn.query(query);
