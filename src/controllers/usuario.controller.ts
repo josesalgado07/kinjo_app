@@ -13,7 +13,7 @@ export async function login(req: Request, res: Response) {
 
     if (body) {
         let { usuario, password } = req.body;
-        const conn = await connect();
+        const conn = await connect();        
 
         let query = `SELECT * FROM usuarios WHERE usuario = '${usuario}' AND password = '${password}'`;
         let listaUsuarios = await conn.query(query);

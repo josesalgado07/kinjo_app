@@ -3,6 +3,8 @@ import morgan from "morgan";
 import cors from "cors";
 
 import usuariosRoutes from "../routes/usuarios.routes";
+import espacioRoutes from "../routes/espacio.routes";
+import reservaRoutes from "../routes/reserva.routes";
 
 export class App {
 
@@ -27,7 +29,9 @@ export class App {
     }
 
     routes() {
-        this.app.use('/kinjo/users', usuariosRoutes);
+        this.app.use('/kinjo/usuarios', usuariosRoutes);
+        this.app.use('/kinjo/espacios', espacioRoutes);
+        this.app.use('/kinjo/reservas', reservaRoutes);
     }
 
     async start() {
