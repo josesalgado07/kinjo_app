@@ -5,6 +5,7 @@ export async function obtener(req: Request, res: Response): Promise<Response> {
     const conn = await connect();
 
     let listaUsuarios = await conn.query('SELECT * FROM usuarios');
+    conn.end();
     return res.json(listaUsuarios[0]);
 }
 
@@ -28,6 +29,7 @@ export async function login(req: Request, res: Response) {
             password = '${password}'`;
 
         let listaUsuarios = await conn.query(query);
+        conn.end();
         let usuarioEncontrado: any = listaUsuarios[0];
         
         if (usuarioEncontrado.length) {

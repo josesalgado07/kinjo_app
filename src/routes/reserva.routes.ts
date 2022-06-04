@@ -3,6 +3,7 @@ const router: Router = Router();
 
 const reservaController = require('../controllers/reserva.controller');
 
+router.get('/lista', reservaController.obtenerReservasPendientes);
 router.get('/lista/:usuarioId', reservaController.obtenerListaReservas);
 router.get('/estados', reservaController.obtenerEstados);
 router.delete('/cancelar/:id', reservaController.cancelar);

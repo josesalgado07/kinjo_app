@@ -7,6 +7,7 @@ export async function obtener(req: Request, res: Response): Promise<Response> {
     const conn = await connect();
 
     let lista = await conn.query('SELECT * FROM espacios');
+    conn.end();
     return res.json(lista[0]);
 }
 
@@ -28,6 +29,7 @@ export async function reservar(req: Request, res: Response): Promise<Response> {
         
     try {
         let response: any = await conn.query(query);
+        conn.end();
 
         if (response[0].affectedRows) {
             res.send({ message: 'Se registro la reserva' });
